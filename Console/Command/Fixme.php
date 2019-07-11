@@ -4,7 +4,7 @@ namespace Swimwear\Fixme\Console\Command;
 class Fixme extends \Symfony\Component\Console\Command\Command
 {
     public function __construct(
-        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
+        \Magento\Catalog\Api\ProductRepositoryInterfaceFactory $productRepository
     ) {
         parent::__construct();
     }
