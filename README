@@ -1,25 +1,15 @@
-If this module is installed and enabled (or even disabled in config.php) running `bin/magento setup:install` command throws the following error with output:
+If this module is installed and enabled visiting /fixme will make a curl request to google maps and should return the same results as:
 
-Starting Magento installation:
-File permissions check...
-[Progress: 1 / 1217]
-Required extensions check...
-[Progress: 2 / 1217]
-Enabling Maintenance Mode...
-[Progress: 3 / 1217]
-Installing deployment configuration...
-[Progress: 4 / 1217]
-Installing database schema:
+https://maps.googleapis.com/maps/api/geocode/json
+{
+   "error_message" : "Invalid request. Missing the 'address', 'components', 'latlng' or 'place_id' parameter.",
+   "results" : [],
+   "status" : "INVALID_REQUEST"
+}
 
-In Pdo.php line 235:
-                                                                                                                                                                        
-  SQLSTATE[42S02]: Base table or view not found: 1146 Table 'magento2.flag' doesn't exist, query was: SELECT `flag`.* FROM `flag` WHERE (`flag`.`flag_code`='staging')  
-                                                                                                                                                                        
+--
 
-In Pdo.php line 228:
-                                                                                           
-  SQLSTATE[42S02]: Base table or view not found: 1146 Table 'magento2.flag' doesn't exist  
-                                                                                           
-----
+However it currently throws an Exception from within Magento:
+"Invalid header line detected"
 
-If I remove the DI from the console command - the install finishes fine. 
+This is incorrect.
